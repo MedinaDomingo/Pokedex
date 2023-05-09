@@ -12,4 +12,4 @@ $statement->execute();
 
 $conn->close();
 
-header("location: interno.php/");
+header("location: interno.php");

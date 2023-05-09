@@ -1,17 +1,8 @@
 <?php
 session_start();
 
-if (isset($_POST["iniciarsesion"])) {
-
-    if ($_POST["usuario"] == "pepe" && $_POST["clave"] == "1234") {
-        $_SESSION["validado"] = 1;
-        $_SESSION["usuario"] = $_POST["usuario"];
-        header("Location: interno.php");
-        exit();
-    } else {
-        setcookie("seguridad", "0", time() - 6000);
-        echo "Error de usuario o clave";
-    }
+if(!isset($_SESSION['usuario'])){
+    header("location: index.php");
 }
 ?>
 
@@ -30,20 +21,20 @@ if (isset($_POST["iniciarsesion"])) {
 <header>
     <nav class="bg-white px-4 lg:px-6 py-2.5 dark:bg-gray-800">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a href="index.php" class="flex items-center">
+            <a href="interno.php" class="flex items-center">
                 <img src="assets/Pokedex_logo.png" class="mr-3 h-6 h-9" alt="Flowbite Logo">
             </a>
-            <form action="index.php" method="post">
-                <div class="flex items-center lg:order-2 justify-between">
-                    <input type="text" name="usuario"
-                           class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 mr-2"
-                           placeholder="Usuario"/>
-                    <input type="password" name="clave"
-                           class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1 mr-2"
-                           placeholder="Contraseña"/>
-                    <input type="submit" name="iniciarsesion" value="Ingresar"
-                           class="mt-1 px-2 py-2 bg-blue-700 text-white hover:bg-blue-800  shadow-sm border-slate-300  block w-full rounded-md sm:text-sm focus:ring-1"/>
-            </form>
+
+                <div class="flex items-center lg:order-2 justify-between text-white">
+                    <?php
+                        echo $_SESSION["usuario"];
+                    ?>
+                    <button  class="ml-2 mt-1 px-2 py-2 bg-blue-700 text-white hover:bg-blue-800  shadow-sm border-slate-300  block w-full rounded-md sm:text-sm focus:ring-1">
+                        <a href="cerrar-sesion.php">Salir</a>
+                    </button>
+                </div>
+
+
         </div>
 
         </div>

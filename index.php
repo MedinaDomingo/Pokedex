@@ -98,8 +98,8 @@ if (isset($_POST["iniciarsesion"])) {
         function mostrarPokemon($pokemon){
             echo '<tr  class="border-b-2">';
             echo '<td>' . $pokemon['numero'] . '</td>';
-            echo '<td>' . $pokemon['nombre'] . '</td>';
-            echo '<td>' . $pokemon['tipo'] . '</td>';
+            echo '<td>' . ucfirst($pokemon['nombre']) . '</td>';
+            echo '<td>' . "<img src='assets/types/".$pokemon['tipo'].".png' class='mx-3'>" . '</td>';
             echo '<td>' . $pokemon['descripcion'] . '</td>';
             echo '<td><img src="' . $pokemon['imagen'] . '"></td>';
             echo '</tr>';

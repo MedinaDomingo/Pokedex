@@ -35,7 +35,7 @@ session_start()
     </nav>
 </header>
 
-<main class="container mx-auto max-sm:px-6 py-2.5 max-w-screen-xl ">
+<main class="container mx-auto max-sm:px-6 py-2.5 max-w-screen-x2 ">
     <form action="" class="flex max-sm:flex-col">
         <input type="text" name="idnombre"
                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-5/6 rounded-md sm:text-sm focus:ring-1 mr-2 sm:w-full max-sm:w-full"
@@ -81,8 +81,8 @@ session_start()
             function mostrarPokemon($pokemon){
                 echo '<tr class="border-b-2">';
                 echo '<td>' .$pokemon['numero']. '</td>';
-                echo '<td>' .$pokemon['nombre']. '</td>';
-                echo '<td>' .$pokemon['tipo']. '</td>';
+                echo '<td>' . ucfirst($pokemon['nombre']) . '</td>';
+                echo '<td>' . "<img src='assets/types/".$pokemon['tipo'].".png' class='mx-3'>" . '</td>';
                 echo '<td>' .$pokemon['descripcion']. '</td>';
                 echo '<td><img src="' .$pokemon['imagen']. '"></td>';
                 echo '<td><button class="bg-yellow-300 p-2 mr-2"><a href="modificar.php?id='.$pokemon['numero'].'">Modificar</a></button><button class="bg-red-600 p-2 text-white"><a href="eliminar.php?id='.$pokemon["numero"].'">Eliminar</a></button></td>';

@@ -1,8 +1,9 @@
 <?php
 session_start();
-
+include_once ("buscar.php");
 if (isset($_POST["iniciarsesion"])) {
-    if ($_POST["usuario"] == "pepe" && $_POST["clave"] == "1234") {
+   
+    if (buscarUsuariocontrasenia($_POST["usuario"], $_POST["clave"])) {
         $_SESSION["validado"] = 1;
         $_SESSION["usuario"] = $_POST["usuario"];
         header("Location: interno.php");
@@ -11,6 +12,15 @@ if (isset($_POST["iniciarsesion"])) {
         setcookie("seguridad", "0", time() - 6000);
         echo "Error de usuario o clave";
     }
+    /* if ($_POST["usuario"] == "pepe" && $_POST["clave"] == "1234") {
+        $_SESSION["validado"] = 1;
+        $_SESSION["usuario"] = $_POST["usuario"];
+        header("Location: interno.php");
+        exit();
+    } else {
+        setcookie("seguridad", "0", time() - 6000);
+        echo "Error de usuario o clave";
+    } */
 }
 ?>
 

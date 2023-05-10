@@ -58,6 +58,8 @@ if(!empty($_POST['registrarse'])){
 
         $statement = $conn->prepare($sql);
 
+
+
         $statement->bind_param("ss",$usuario , $clave);
 
         if($statement->execute()){

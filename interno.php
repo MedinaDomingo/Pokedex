@@ -14,6 +14,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] != 'admin') {
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <title>Interno</title>
 </head>
 

@@ -61,3 +61,25 @@ function buscarUsuario($nombre)
 
 }
 
+function buscarUsuariocontrasenia($nombre, $contrasenia)
+{
+    $conn = getConexion('pokemon');
+    $sql = "SELECT * FROM usuario where nombre=? AND contrasenia=?";
+
+    $statement = $conn->prepare($sql);
+
+    $statement->bind_param("ss", $nombre, $contrasenia);
+
+
+    $statement->execute();
+    $resultado = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+    $conn->close();
+
+    if (empty($resultado)) {
+        return 0;
+    }else{
+        return "<p class='text-red-400 block w-full text-center'>Usuario existente</p>";
+    }
+
+}
+

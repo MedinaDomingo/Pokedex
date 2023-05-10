@@ -45,7 +45,7 @@ if(!isset($_SESSION['usuario'])){
         <input type="text" name="idnombre"
                class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-5/6 rounded-md sm:text-sm focus:ring-1 mr-2 sm:w-full max-sm:w-full"
                placeholder="Nombre o número"/>
-        <input type="submit" name="buscar" value="Quien es este Pokemon"
+        <input type="submit" name="buscar" value="Quien es este Pokemon"  style="cursor:pointer;"
                class="mt-1 px-2 py-2 bg-blue-700 text-white hover:bg-blue-800  shadow-sm border-slate-300  block w-1/4 rounded-md sm:text-sm focus:ring-1  max-sm:w-full"/>
     </form>
 
@@ -63,42 +63,24 @@ if(!isset($_SESSION['usuario'])){
 
         <?php
         include_once "buscar.php";
-        include_once "conexion.php";
 
-try {
-    $resultado = buscarPorNombreId($_GET['id']);
-    echo '<form method="post">';
-    echo '<tr>';
-    echo '<td><input type="text" name="numero" readonly value="' . $resultado['numero'] . '"></td>';
-    echo '<td><input type="text" name="nombre" value="' . $resultado['nombre'] . '"></td>';    echo '<td>' . $resultado['descripcion'] . '</td>';
-    echo '<td><img src="' . $resultado['imagen'] . '"></td>';
-    echo '</tr>';
 
-    echo '<button type="submit" name="modificar">Confirmar</button>';
 
-    echo '</form>';
-} catch (Exception $e) {
-    echo '<p class="text-center text-rose-600">' . $e->getMessage() . '</p>';
-}
+            try {
+                $resultado = buscarPorNombreId($_GET['id']);
+                echo '<tr>';
+                echo '<td>' . $resultado['numero'] . '</td>';
+                echo '<td><input type="text" value="' . $resultado['nombre'] . '"></td>';
+                echo '<td>' . $resultado['tipo'] . '</td>';
+                echo '<td>' . $resultado['descripcion'] . '</td>';
+                echo '<td><img src="' . $resultado['imagen'] . '"></td>';
+                echo '</tr>';
+            } catch (Exception $e) {
+                echo '<p class="text-center text-rose-600">' . $e->getMessage() . '</p>';
+            }
 
-var_dump($_POST);
-if (isset($_POST["modificar"])) {
-    $nuevoNombre = $_POST["nombre"];
-    $numero = $_POST['numero'];
 
-    $sql = "UPDATE pokemones SET nombre = ? WHERE numero = ?";
-
-    $conn = getConexion('pokemon');
-    $statment = $conn->prepare($sql);
-
-    $statment->bind_param('ss', $nuevoNombre, $numero);
-    $statment->execute();
-
-    echo "Pokemon modificado exitosamente";
-}
-
-?>
-
+        ?>
 
 
         </tbody>

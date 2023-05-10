@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['usuario'])) {
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] != 'admin') {
     header("location: index.php");
 }
 ?>
@@ -47,7 +47,7 @@ if (!isset($_SESSION['usuario'])) {
             <input type="text" name="idnombre"
                 class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-5/6 rounded-md sm:text-sm focus:ring-1 mr-2 sm:w-full max-sm:w-full"
                 placeholder="Nombre o número" />
-            <input type="submit" name="buscar" value="Quien es este Pokemon"
+            <input type="submit" name="buscar" value="Quien es este Pokemon" style="cursor:pointer;"
                 class="mt-1 px-2 py-2 bg-blue-700 text-white hover:bg-blue-800  shadow-sm border-slate-300  block w-1/4 rounded-md sm:text-sm focus:ring-1  max-sm:w-full" />
         </form>
 
